@@ -112,11 +112,10 @@ export default function PortfolioClientHub({ items }: { items: PortfolioItem[] }
               <div key={item.id} className="portfolio-card group flex flex-col">
                 {/* Thumbnail */}
                 <div className="relative h-56 overflow-hidden bg-gray-100">
-                  <Image
+                  <img
                     src={item.thumbnail}
                     alt={item.title}
-                    fill
-                    className={`object-cover transition-transform duration-700 ${isVideo ? 'group-hover:scale-100' : 'group-hover:scale-105'}`}
+                    className={`w-full h-full object-cover transition-transform duration-700 ${isVideo ? 'group-hover:scale-100' : 'group-hover:scale-105'}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 

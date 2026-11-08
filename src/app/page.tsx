@@ -54,62 +54,95 @@ export default async function HomePage() {
         <div className="relative z-10 flex-1 flex flex-col max-w-7xl mx-auto w-full px-6 sm:px-10 lg:px-16">
           
           {/* Top micro-label */}
-          <div className="pt-2 pb-0">
+          <div className="pt-2 pb-6">
             <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-blue-200/80">
               B GROWTH AGENCY · DESIGN & ENGINEERING STUDIO · HYDERABAD
             </span>
           </div>
 
-          {/* Main Headline — takes up most of the vertical space */}
-          <div className="flex-1 flex flex-col justify-center py-16">
-            <h1 className="text-[clamp(2.8rem,8vw,7.5rem)] font-black leading-[0.95] tracking-tight uppercase text-white max-w-5xl">
-              WE BUILD<br />
-              <span className="text-blue-200">BRANDS</span><br />
-              THAT GROW.
-            </h1>
+          {/* 2-Column Perfectly Aligned Grid: Balanced Headline & Commanding Founder Portrait */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center py-6 sm:py-10 my-auto">
+            
+            {/* Left Column — Brand Statement & Actions */}
+            <div className="space-y-6 sm:space-y-7 flex flex-col justify-center">
+              <h1 className="text-3xl sm:text-5xl lg:text-[3.8rem] xl:text-[4.4rem] font-black leading-[1.03] tracking-tight uppercase text-white">
+                WE BUILD<br />
+                <span className="text-blue-200">BRANDS</span><br />
+                THAT GROW.
+              </h1>
 
-            <div className="mt-10 max-w-2xl">
-              <p className="text-blue-100 text-lg sm:text-xl leading-relaxed font-normal">
-                Premium Next.js websites, scroll-stopping commercial poster designs, 
-                and cinematic video editing — engineered to convert audiences into revenue.
+              <p className="text-blue-100 text-base sm:text-lg lg:text-xl leading-relaxed font-normal max-w-lg">
+                High-performance Next.js websites, scroll-stopping commercial posters, 
+                and retention-edited video post-production — engineered to convert audiences into revenue.
               </p>
+
+              <div className="flex flex-wrap gap-4 items-center pt-1">
+                <Link href="/quote" className="btn-primary shadow-xl shadow-black/25">
+                  Get Free Proposal
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link href="/portfolio" className="btn-outline-white">
+                  View Our Work
+                </Link>
+              </div>
+
+              {/* Trust signals */}
+              <div className="pt-2 flex flex-wrap items-center gap-4 sm:gap-6 text-blue-200 text-xs font-bold tracking-wider uppercase">
+                <span>✓ Fixed-Price Packages</span>
+                <span className="text-blue-300/40">|</span>
+                <span>✓ 2–4 Week Delivery</span>
+                <span className="text-blue-300/40">|</span>
+                <span>✓ 100% Satisfaction</span>
+              </div>
             </div>
 
-            <div className="mt-10 flex flex-wrap gap-4 items-center">
-              <Link href="/quote" className="btn-primary shadow-lg shadow-black/20">
-                Get Free Proposal
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link href="/portfolio" className="btn-outline-white">
-                View Our Work
-              </Link>
+            {/* Right Column — Founder Adharsh Katari Command Portrait Frame */}
+            <div className="flex flex-col items-center justify-center">
+              <div className="relative group">
+                {/* Outer halo glow ring */}
+                <div className="absolute -inset-4 rounded-full bg-white/20 blur-3xl opacity-80 group-hover:opacity-100 transition-opacity" />
+                
+                {/* Large, commanding circular frame covering face and upper body */}
+                <div className="relative w-72 h-72 sm:w-[380px] sm:h-[380px] md:w-[440px] md:h-[440px] lg:w-[470px] lg:h-[470px] xl:w-[510px] xl:h-[510px] rounded-full overflow-hidden border-[5px] border-white shadow-[0_30px_70px_rgba(0,0,0,0.45)] bg-[#103EAE]">
+                  <img
+                    src="/founder.jpg"
+                    alt="Adharsh Katari - Founder"
+                    className="w-full h-full object-cover object-[50%_18%] group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+
+                {/* Floating Name Badge */}
+                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-white text-[#0B1420] px-7 py-3 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.3)] border-2 border-white flex items-center gap-3 whitespace-nowrap z-20">
+                  <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse flex-shrink-0 shadow-xs" />
+                  <div className="text-left">
+                    <span className="text-sm sm:text-base font-black uppercase tracking-wider block text-[#0B1420] leading-tight">
+                      Adharsh Katari
+                    </span>
+                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#1F5FE6] block leading-tight mt-0.5">
+                      Founder · B Growth Agency
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Trust signals */}
-            <div className="mt-14 flex flex-wrap items-center gap-6 text-blue-200/70 text-xs font-semibold tracking-wider uppercase">
-              <span>✓ Fixed-Price Packages</span>
-              <span className="text-blue-200/30">|</span>
-              <span>✓ 2–4 Week Delivery</span>
-              <span className="text-blue-200/30">|</span>
-              <span>✓ 100% Satisfaction Guarantee</span>
-            </div>
           </div>
 
           {/* Services strip at bottom of hero */}
-          <div className="pb-10">
-            <div className="border-t border-white/15 pt-6 grid grid-cols-3 gap-4">
+          <div className="pt-10 pb-4">
+            <div className="border-t border-white/15 pt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
               {[
                 { icon: Globe, label: 'Web Development', sub: 'Next.js · React · TypeScript' },
                 { icon: Layers, label: 'Poster & Graphic Design', sub: 'Branding · Print · Social' },
                 { icon: Video, label: 'Video Editing', sub: 'Reels · Ads · Cinematic' },
               ].map((s) => (
-                <div key={s.label} className="flex items-center gap-3">
+                <div key={s.label} className="flex items-center gap-3 bg-white/5 sm:bg-transparent p-3 sm:p-0 rounded-lg">
                   <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0">
                     <s.icon className="w-4 h-4 text-blue-200" />
                   </div>
                   <div>
                     <div className="text-white font-bold text-xs sm:text-sm">{s.label}</div>
-                    <div className="text-blue-300/70 text-[10px] sm:text-xs">{s.sub}</div>
+                    <div className="text-blue-200/80 text-[10px] sm:text-xs">{s.sub}</div>
                   </div>
                 </div>
               ))}
@@ -119,10 +152,10 @@ export default async function HomePage() {
         </div>
 
         {/* Scroll indicator */}
-        <div className="relative z-10 flex justify-center pb-8">
-          <a href="#stats" className="flex flex-col items-center gap-2 text-blue-200/60 hover:text-blue-200 transition-colors">
-            <span className="text-[10px] font-bold tracking-widest uppercase">Scroll</span>
-            <ArrowDown className="w-4 h-4 animate-bounce" />
+        <div className="relative z-10 flex justify-center pb-4 pt-2">
+          <a href="#stats" className="flex flex-col items-center gap-1.5 text-blue-200/70 hover:text-white transition-colors">
+            <span className="text-[9px] font-bold tracking-widest uppercase">Scroll</span>
+            <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
           </a>
         </div>
       </section>
@@ -144,20 +177,35 @@ export default async function HomePage() {
       </section>
 
       {/* ================================================================
-          CLIENT LOGOS MARQUEE
+          CLIENT LOGOS STRIP — 100% Crisp & High-Contrast
           ================================================================ */}
-      <section className="bg-white py-10 border-b border-[#E0E2DA]">
-        <div className="max-w-7xl mx-auto px-6 mb-5">
-          <p className="text-center text-[11px] font-bold tracking-widest uppercase text-gray-400">
-            Trusted by growing brands
-          </p>
+      <section className="bg-white py-14 border-y border-[#E0E2DA]">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 mb-8 text-center">
+          <span className="text-xs font-black tracking-[0.2em] uppercase text-[#1F5FE6] bg-[#EBF1FF] px-4 py-1.5 rounded-full inline-block">
+            ★ TRUSTED BY HIGH-GROWTH BRANDS & CREATORS
+          </span>
         </div>
-        <div className="overflow-hidden relative">
-          <div className="marquee-track">
-            {[...Array(16)].map((_, i) => (
-              <div key={i} className="mx-10 flex-shrink-0 h-9 w-32 relative opacity-30 hover:opacity-60 transition-opacity grayscale">
-                <div className="w-full h-full bg-gray-200 rounded flex items-center justify-center">
-                  <span className="text-xs font-bold text-gray-500">CLIENT {(i % 8) + 1}</span>
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 items-center">
+            {[
+              { name: 'APEX WEALTH', tag: 'FINTECH' },
+              { name: 'ZENITH AI', tag: 'ENTERPRISE' },
+              { name: 'SOLARIA', tag: 'FESTIVAL' },
+              { name: 'PULSE ORGANICS', tag: 'E-COMMERCE' },
+              { name: 'LUMINA STUDIOS', tag: 'DESIGN' },
+              { name: 'FITVERSE', tag: 'HEALTH' },
+              { name: 'HYPERDRIVE', tag: 'AUTO' },
+              { name: 'URBAN KICKZ', tag: 'RETAIL' },
+            ].map((b, i) => (
+              <div
+                key={i}
+                className="p-3.5 sm:p-4 rounded-xl bg-[#F4F5F0] border-2 border-[#D8DCD5] hover:border-[#1F5FE6] hover:bg-white transition-all text-center group flex flex-col justify-center items-center shadow-xs"
+              >
+                <div className="text-xs sm:text-sm font-black text-[#0B1420] group-hover:text-[#1F5FE6] tracking-tight">
+                  {b.name}
+                </div>
+                <div className="text-[9px] font-bold text-[#6B7384] tracking-widest uppercase mt-0.5">
+                  {b.tag}
                 </div>
               </div>
             ))}
@@ -197,11 +245,11 @@ export default async function HomePage() {
                   
                   {/* Image */}
                   <div className="relative h-52 overflow-hidden bg-gray-100">
-                    <Image
+                    <img
                       src={service.coverImage}
                       alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                     
@@ -282,11 +330,11 @@ export default async function HomePage() {
               <div key={item.id} className="portfolio-card group bg-[#181C27] border-white/5 hover:border-[#1F5FE6]">
                 
                 <div className="relative h-52 overflow-hidden bg-gray-900">
-                  <Image
+                  <img
                     src={item.thumbnail}
                     alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                   
@@ -417,11 +465,11 @@ export default async function HomePage() {
                   </div>
                   <div className="mt-6 pt-5 border-t border-white/10 flex items-center gap-3">
                     <div className="relative w-10 h-10 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
-                      <Image
+                      <img
                         src={t.avatar || `https://images.unsplash.com/photo-150700321116${i}-0a1dd7228f2d?w=200`}
                         alt={t.clientName}
-                        fill
-                        className="object-cover"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                     </div>
                     <div>

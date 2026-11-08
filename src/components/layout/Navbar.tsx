@@ -11,6 +11,7 @@ const navLinks = [
   { label: 'WORK', href: '/portfolio' },
   { label: 'PRICING', href: '/pricing' },
   { label: 'ABOUT', href: '/about' },
+  { label: 'TEAM', href: '/team' },
   { label: 'BLOG', href: '/blog' },
   { label: 'CONTACT', href: '/contact' },
 ];
@@ -19,11 +20,16 @@ export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // If inside the Admin Portal, do NOT render public website navbar
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(href + '/');
 
   return (
-    <header className="w-full bg-[#1F5FE6] py-5 relative z-50">
+    <header className="sticky top-0 z-50 w-full bg-[#1F5FE6] py-4 sm:py-5 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.35)] transition-all">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="flex items-center justify-between">
 

@@ -2,14 +2,16 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { ShieldCheck, X } from 'lucide-react';
 
 export default function CookieBanner() {
+  const pathname = usePathname();
   const [show, setShow] = useState(false);
 
   useEffect(() => {
     const consent = localStorage.getItem('bgrowth_cookie_consent');
-    if (!consent) {
+    if (!consent && !window.location.pathname.startsWith('/admin')) {
       const timer = setTimeout(() => setShow(true), 1500);
       return () => clearTimeout(timer);
     }
@@ -25,7 +27,7 @@ export default function CookieBanner() {
     setShow(false);
   };
 
-  if (!show) return null;
+  if (pathname?.startsWith('/admin') || !show) return null;
 
   return (
     <div className="fixed bottom-4 left-4 right-4 md:left-6 md:right-auto md:max-w-md z-50 bg-white dark:bg-slate-900 border border-brand-border dark:border-slate-800 rounded-2xl shadow-2xl p-4 sm:p-5 animate-in fade-in slide-in-from-bottom-5">

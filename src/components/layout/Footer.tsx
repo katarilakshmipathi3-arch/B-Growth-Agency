@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Send, ArrowRight, Linkedin, Twitter, Instagram, Youtube } from 'lucide-react';
 
 const footerLinks = {
@@ -36,9 +37,15 @@ const socials = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // If inside the Admin Portal, do NOT render public website footer
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,14 +103,11 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-6">
             {/* Logo on white bg */}
             <div className="inline-flex bg-white rounded-xl px-5 py-3">
-              <div className="relative h-9 w-[160px]">
-                <Image
-                  src="/logo.png"
-                  alt="B Growth Agency"
-                  fill
-                  className="object-contain object-left"
-                />
-              </div>
+              <img
+                src="/logo.png"
+                alt="B Growth Agency"
+                className="h-8 w-auto object-contain"
+              />
             </div>
 
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
@@ -195,8 +199,8 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-white/8">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="text-xs text-gray-600">
-            © {new Date().getFullYear()} B Growth Agency. All rights reserved. Built with Next.js.
+          <div className="text-xs text-gray-600" suppressHydrationWarning>
+            © 2024 B Growth Agency. All rights reserved. Built with Next.js.
           </div>
           <div className="flex items-center gap-6 text-xs text-gray-600">
             <Link href="/privacy" className="hover:text-gray-300 transition-colors">Privacy</Link>

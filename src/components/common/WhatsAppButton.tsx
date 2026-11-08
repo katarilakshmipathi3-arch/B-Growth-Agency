@@ -1,12 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { MessageCircle, X, Send } from 'lucide-react';
 
 export default function WhatsAppButton() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
   const phoneNumber = '919876543210';
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
