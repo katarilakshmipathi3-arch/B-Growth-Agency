@@ -1,0 +1,196 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                 String        @id @default(uuid())
+  name               String
+  email              String        @unique
+  password           String
+  role               String        @default("SUPER_ADMIN") // SUPER_ADMIN, EDITOR
+  mustChangePassword Boolean       @default(false)
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  activityLogs       ActivityLog[]
+}
+
+model Service {
+  id               String   @id @default(uuid())
+  slug             String   @unique
+  title            String
+  category         String   // Web Development, Poster & Graphic Design, Video Editing, Branding, Social Media, SEO
+  coverImage       String
+  gallery          String   @default("[]") // JSON string of image URLs
+  shortDescription String
+  fullDescription  String
+  features         String   @default("[]") // JSON string of string features
+  deliverables     String   @default("[]") // JSON string of deliverables
+  pricingTiers     String   @default("[]") // JSON string of {name, price, currency, features, isPopular}
+  startingPrice    Float    @default(0)
+  icon             String   @default("Sparkles")
+  isFeatured       Boolean  @default(false)
+  order            Int      @default(0)
+  status           String   @default("published") // published, draft
+  seoTitle         String?
+  seoDescription   String?
+  isDemo           Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model PortfolioItem {
+  id             String   @id @default(uuid())
+  slug           String   @unique
+  title          String
+  type           String   // "Website", "Poster Design", "Edited Video"
+  category       String
+  clientName     String
+  thumbnail      String
+  images         String   @default("[]") // JSON string array
+  videoUrl       String?
+  liveUrl        String?
+  description    String
+  challenge      String?
+  solution       String?
+  results        String?
+  toolsUsed      String   @default("[]") // JSON array of tool names
+  completionDate String?
+  isFeatured     Boolean  @default(false)
+  tags           String   @default("[]") // JSON array
+  order          Int      @default(0)
+  status         String   @default("published") // published, draft
+  isDemo         Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Inquiry {
+  id              String   @id @default(uuid())
+  type            String   @default("contact") // contact, quote
+  name            String
+  email           String
+  phone           String?
+  serviceInterest String?
+  budget          String?
+  timeline        String?
+  message         String
+  details         String?  // JSON string for multi-step quote answers
+  status          String   @default("New") // New, In Progress, Closed
+  notes           String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  status    String   @default("active") // active, unsubscribed
+  createdAt DateTime @default(now())
+}
+
+model Testimonial {
+  id         String   @id @default(uuid())
+  clientName String
+  clientRole String
+  company    String
+  avatar     String?
+  content    String
+  rating     Int      @default(5)
+  isFeatured Boolean  @default(true)
+  order      Int      @default(0)
+  isDemo     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
+
+model ClientLogo {
+  id         String   @id @default(uuid())
+  name       String
+  logoUrl    String
+  websiteUrl String?
+  order      Int      @default(0)
+  isDemo     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+}
+
+model TeamMember {
+  id        String   @id @default(uuid())
+  name      String
+  role      String
+  avatar    String
+  bio       String
+  socials   String   @default("{}") // JSON string: {linkedin, twitter, github, dribbble}
+  order     Int      @default(0)
+  isDemo    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model BlogPost {
+  id             String   @id @default(uuid())
+  slug           String   @unique
+  title          String
+  coverImage     String
+  excerpt        String
+  content        String
+  category       String
+  readTime       String   @default("5 min read")
+  authorName     String   @default("B Growth Team")
+  authorAvatar   String?
+  status         String   @default("published") // published, draft
+  publishedAt    DateTime @default(now())
+  seoTitle       String?
+  seoDescription String?
+  isDemo         Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model FAQ {
+  id        String   @id @default(uuid())
+  question  String
+  answer    String
+  category  String   @default("General")
+  order     Int      @default(0)
+  isDemo    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model PageContent {
+  id        String   @id @default(uuid())
+  key       String   @unique // home, about, contact, etc.
+  data      String   // JSON string
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSetting {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model MediaFile {
+  id           String   @id @default(uuid())
+  filename     String
+  originalName String
+  url          String
+  mimeType     String
+  size         Int
+  createdAt    DateTime @default(now())
+}
+
+model ActivityLog {
+  id         String   @id @default(uuid())
+  userId     String?
+  userName   String   @default("Admin")
+  action     String   // CREATE, UPDATE, DELETE, LOGIN
+  entityType String   // Service, Portfolio, User, etc.
+  entityId   String?
+  details    String?
+  createdAt  DateTime @default(now())
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+}

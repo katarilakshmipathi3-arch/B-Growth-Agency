@@ -1,0 +1,296 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --primary: #1F5FE6;
+    --primary-hover: #1749C0;
+    --primary-dark: #1243B5;
+    --canvas: #EAECE8;
+    --canvas-border: #D4D6CF;
+    --graphite: #0F1117;
+    --graphite-mid: #181C27;
+    --surface: #FFFFFF;
+    --text-dark: #0B1420;
+    --text-mid: #3A4152;
+    --text-muted: #6B7384;
+    --ice: #EBF1FF;
+    --ice-border: #C7D7F8;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--canvas);
+    color: var(--text-dark);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* =============================================
+   ARCHITECTURAL GRID LINES (Swiss Design)
+   ============================================= */
+.grid-lines {
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(255,255,255,0.08) 0px,
+    rgba(255,255,255,0.08) 1px,
+    transparent 1px,
+    transparent 8.333%
+  );
+}
+
+.grid-lines-dark {
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(0,0,0,0.04) 0px,
+    rgba(0,0,0,0.04) 1px,
+    transparent 1px,
+    transparent 8.333%
+  );
+}
+
+/* =============================================
+   SECTION LABEL (editorial numbering)
+   ============================================= */
+.section-label {
+  font-family: 'Inter', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8A909E;
+  margin-bottom: 10px;
+}
+
+/* =============================================
+   HERO — FULL BLEED ROYAL BLUE
+   Sits flush against white navbar — no gap
+   ============================================= */
+.hero-blue {
+  background-color: #1F5FE6;
+  position: relative;
+  overflow: hidden;
+  /* Subtle noise texture */
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,0.055) 0px,
+      rgba(255,255,255,0.055) 1px,
+      transparent 1px,
+      transparent 8.333%
+    ),
+    radial-gradient(ellipse at 80% -20%, rgba(100,160,255,0.25) 0%, transparent 55%),
+    radial-gradient(ellipse at 10% 100%, rgba(10,30,120,0.35) 0%, transparent 50%);
+}
+
+/* =============================================
+   CARDS
+   ============================================= */
+.card-white {
+  background: #FFFFFF;
+  border: 1px solid #E0E2DA;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-dark {
+  background: #0F1117;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-ice {
+  background: #EBF1FF;
+  border: 1px solid #C7D7F8;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-canvas {
+  background: #F4F5F0;
+  border: 1px solid #D4D6CF;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: #FFFFFF;
+  color: #1F5FE6;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: #EBF1FF;
+  transform: translateY(-1px);
+}
+
+.btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: transparent;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-outline-white:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.7);
+}
+
+.btn-blue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: #1F5FE6;
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-blue:hover {
+  background: #1749C0;
+  transform: translateY(-1px);
+}
+
+/* =============================================
+   STAT STRIP
+   ============================================= */
+.stat-strip {
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+/* =============================================
+   MARQUEE
+   ============================================= */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 28s linear infinite;
+  display: flex;
+  width: max-content;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* =============================================
+   SERVICE CARD HOVER
+   ============================================= */
+.service-card {
+  background: #FFFFFF;
+  border: 1px solid #E0E2DA;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.service-card:hover {
+  border-color: #1F5FE6;
+  box-shadow: 0 12px 40px rgba(31,95,230,0.12);
+  transform: translateY(-4px);
+}
+
+/* =============================================
+   PORTFOLIO CARD
+   ============================================= */
+.portfolio-card {
+  background: #FFFFFF;
+  border: 1px solid #E0E2DA;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.portfolio-card:hover {
+  border-color: #1F5FE6;
+  box-shadow: 0 16px 48px rgba(31,95,230,0.14);
+  transform: translateY(-4px);
+}
+
+/* =============================================
+   PROCESS STEP
+   ============================================= */
+.process-step {
+  position: relative;
+  padding-left: 56px;
+}
+.process-step::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 44px;
+  bottom: -32px;
+  width: 1px;
+  background: linear-gradient(to bottom, #1F5FE6, transparent);
+}
+.process-step:last-child::before {
+  display: none;
+}
+
+/* =============================================
+   ADMIN — keep clean white/blue
+   ============================================= */
+.admin-surface {
+  background: #FFFFFF;
+  border: 1px solid #E0E2DA;
+  border-radius: 12px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD0D8; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #1F5FE6; }
