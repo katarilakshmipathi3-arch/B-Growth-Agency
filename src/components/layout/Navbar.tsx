@@ -1,70 +1,54 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
 const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Services', href: '/services' },
-  { label: 'Work', href: '/portfolio' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'About', href: '/about' },
-  { label: 'Blog', href: '/blog' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'HOME', href: '/' },
+  { label: 'SERVICES', href: '/services' },
+  { label: 'WORK', href: '/portfolio' },
+  { label: 'PRICING', href: '/pricing' },
+  { label: 'ABOUT', href: '/about' },
+  { label: 'BLOG', href: '/blog' },
+  { label: 'CONTACT', href: '/contact' },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname === href || pathname.startsWith(href + '/');
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-[#154BC0]/95 backdrop-blur-md shadow-lg border-b border-white/10 py-3'
-          : 'bg-[#1F5FE6] border-b border-white/10 py-4'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="w-full bg-[#1F5FE6] py-5 relative z-50">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="flex items-center justify-between">
 
-          {/* ── LOGO with crisp white badge for maximum visibility ── */}
-          <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
-            <div className="bg-white px-3.5 py-1.5 rounded-lg shadow-sm border border-white/40 flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-              {/* Using standard img tag to prevent Next.js hydration mismatch */}
+          {/* ── LOGO: White rounded badge exactly as in reference ── */}
+          <Link href="/" className="flex-shrink-0 group">
+            <div className="bg-white px-4 py-2.5 rounded-xl shadow-md flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
               <img
                 src="/logo.png"
                 alt="B Growth Agency"
-                className="h-8 w-auto object-contain"
+                className="h-7 sm:h-8 w-auto object-contain"
               />
             </div>
           </Link>
 
-          {/* ── DESKTOP NAV — PURE WHITE TEXT ── */}
-          <nav className="hidden lg:flex items-center gap-1">
+          {/* ── DESKTOP NAV: Centered navigation links exactly as in reference ── */}
+          <nav className="hidden lg:flex items-center gap-2 xl:gap-3">
             {navLinks.map((link) => {
               const active = isActive(link.href);
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-lg transition-all duration-200 ${
+                  className={`px-4 py-2 text-xs font-black tracking-wider rounded-lg transition-all duration-200 ${
                     active
-                      ? 'text-white bg-white/20 shadow-xs'
+                      ? 'bg-white/20 text-white shadow-xs'
                       : 'text-white/90 hover:text-white hover:bg-white/10'
                   }`}
                 >
@@ -74,28 +58,28 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* ── RIGHT ACTIONS ── */}
-          <div className="hidden lg:flex items-center gap-4">
+          {/* ── RIGHT ACTIONS: Admin link + White Pill Button ── */}
+          <div className="hidden lg:flex items-center gap-6">
             <Link
               href="/admin/login"
-              className="text-xs font-bold uppercase tracking-wider text-white/70 hover:text-white px-3 py-2 rounded-lg hover:bg-white/10 transition-colors"
+              className="text-xs font-black tracking-wider text-white hover:text-blue-200 uppercase transition-colors"
             >
-              Admin
+              ADMIN
             </Link>
 
             <Link
               href="/quote"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-[#1F5FE6] hover:bg-blue-50 text-xs font-extrabold uppercase tracking-wider rounded-lg transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-white text-[#1F5FE6] hover:bg-blue-50 text-xs font-black uppercase tracking-wider rounded-xl transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
-              <span>Get Free Quote</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>GET FREE QUOTE</span>
+              <ArrowRight className="w-4 h-4 text-[#1F5FE6]" />
             </Link>
           </div>
 
           {/* ── MOBILE MENU BUTTON ── */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2.5 rounded-lg text-white bg-white/10 hover:bg-white/20 transition-colors border border-white/20"
+            className="lg:hidden p-2 rounded-lg text-white bg-white/10 hover:bg-white/20 transition-colors border border-white/20"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -104,9 +88,9 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ── MOBILE DRAWER ── */}
+      {/* ── MOBILE MENU DRAWER ── */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[#154BC0] border-t border-white/10 px-6 py-6 space-y-3 animate-in fade-in slide-in-from-top-2">
+        <div className="lg:hidden bg-[#154BC0] border-t border-white/10 px-6 py-6 mt-4 space-y-2">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
@@ -114,9 +98,9 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className={`block px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg transition-colors ${
+                className={`block px-4 py-2.5 text-xs font-black tracking-wider rounded-lg uppercase ${
                   active
-                    ? 'text-white bg-white/20'
+                    ? 'bg-white/20 text-white'
                     : 'text-white/80 hover:text-white hover:bg-white/10'
                 }`}
               >
@@ -128,16 +112,16 @@ export default function Navbar() {
             <Link
               href="/quote"
               onClick={() => setMobileOpen(false)}
-              className="w-full text-center py-3 bg-white text-[#1F5FE6] text-xs font-extrabold uppercase tracking-wider rounded-lg shadow-md"
+              className="w-full text-center py-3 bg-white text-[#1F5FE6] text-xs font-black uppercase tracking-wider rounded-xl shadow-md"
             >
-              Get Free Quote →
+              GET FREE QUOTE →
             </Link>
             <Link
               href="/admin/login"
               onClick={() => setMobileOpen(false)}
-              className="text-center text-xs font-semibold uppercase tracking-wider text-white/60 hover:text-white py-1"
+              className="text-center text-xs font-bold uppercase tracking-wider text-white/70 hover:text-white py-1"
             >
-              Admin Portal
+              ADMIN PORTAL
             </Link>
           </div>
         </div>

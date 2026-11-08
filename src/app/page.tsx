@@ -50,11 +50,11 @@ export default async function HomePage() {
       {/* ================================================================
           HERO — Full-bleed Royal Blue, covering all the way to the top edge
           ================================================================ */}
-      <section className="hero-blue min-h-screen flex flex-col pt-24 sm:pt-28">
+      <section className="hero-blue min-h-[90vh] flex flex-col justify-between pt-6 sm:pt-10 pb-16">
         <div className="relative z-10 flex-1 flex flex-col max-w-7xl mx-auto w-full px-6 sm:px-10 lg:px-16">
           
           {/* Top micro-label */}
-          <div className="pt-4 pb-0">
+          <div className="pt-2 pb-0">
             <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-blue-200/80">
               B GROWTH AGENCY · DESIGN & ENGINEERING STUDIO · HYDERABAD
             </span>
