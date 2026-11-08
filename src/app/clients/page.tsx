@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import prisma from '@/lib/prisma';
@@ -18,7 +18,7 @@ export default async function ClientsPage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-[#EAECE8]">
+    <div className="min-h-screen bg-white">
 
       {/* ================================================================
           HERO
@@ -44,7 +44,7 @@ export default async function ClientsPage() {
           CLIENT LOGOS GRID
           ================================================================ */}
       {clientLogos.length > 0 && (
-        <section className="bg-white py-20">
+        <section className="bg-white py-20 border-b border-blue-100">
           <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
             <div className="text-center mb-12">
               <div className="section-label text-center">Partner Brands</div>
@@ -52,13 +52,13 @@ export default async function ClientsPage() {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
               {clientLogos.map((client) => (
-                <div key={client.id} className="flex items-center justify-center p-5 bg-[#F4F5F0] border border-[#E0E2DA] rounded-xl hover:border-[#1F5FE6] transition-colors">
-                  <div className="relative h-10 w-full">
-                    <Image
+                <div key={client.id} className="flex items-center justify-center p-5 bg-[#F8FAFF] border border-blue-100 rounded-2xl hover:border-[#1853CF] transition-all">
+                  <div className="h-10 w-full flex items-center justify-center">
+                    <img
                       src={client.logoUrl}
                       alt={client.name}
-                      fill
-                      className="object-contain grayscale hover:grayscale-0 transition-all"
+                      className="h-8 max-w-full object-contain"
+                      loading="lazy"
                     />
                   </div>
                 </div>
@@ -69,41 +69,41 @@ export default async function ClientsPage() {
       )}
 
       {/* ================================================================
-          TESTIMONIALS
+          TESTIMONIALS — Crisp White on Soft Ice Blue
           ================================================================ */}
-      <section className="bg-[#0F1117] py-24">
+      <section className="bg-[#F8FAFF] py-24">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="mb-14 text-center">
-            <div className="section-label text-gray-500 text-center">Verified Reviews</div>
-            <h2 className="text-4xl sm:text-5xl font-black uppercase text-white">
+            <div className="section-label text-center">Verified Reviews</div>
+            <h2 className="text-4xl sm:text-5xl font-black uppercase text-[#0B1420]">
               WHAT CLIENTS SAY.
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {testimonials.map((t, i) => (
-              <div key={t.id} className="bg-[#181C27] border border-white/5 rounded-xl p-7 flex flex-col justify-between hover:border-[#1F5FE6] transition-colors">
+              <div key={t.id} className="bg-white border border-blue-100 rounded-2xl p-8 shadow-sm hover:border-[#1853CF] hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
                 <div>
-                  <div className="flex gap-0.5 mb-5">
+                  <div className="flex gap-1 mb-5">
                     {[...Array(t.rating)].map((_, si) => (
                       <Star key={si} className="w-4 h-4 text-amber-400" fill="#f59e0b" />
                     ))}
                   </div>
-                  <p className="text-gray-200 text-sm leading-relaxed">
+                  <p className="text-slate-700 text-sm leading-relaxed font-medium">
                     &ldquo;{t.content}&rdquo;
                   </p>
                 </div>
-                <div className="mt-6 pt-5 border-t border-white/10 flex items-center gap-3">
-                  <div className="relative w-11 h-11 rounded-full overflow-hidden bg-gray-700 flex-shrink-0">
-                    <Image
+                <div className="mt-6 pt-5 border-t border-slate-100 flex items-center gap-3.5">
+                  <div className="relative w-11 h-11 rounded-full overflow-hidden bg-blue-100 flex-shrink-0 border border-[#1853CF]">
+                    <img
                       src={t.avatar || `https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&fit=facearea`}
                       alt={t.clientName}
-                      fill
-                      className="object-cover"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
                     />
                   </div>
                   <div>
-                    <div className="text-sm font-black text-white uppercase">{t.clientName}</div>
-                    <div className="text-[11px] text-gray-500 uppercase tracking-wider">{t.clientRole}, {t.company}</div>
+                    <div className="text-sm font-black text-[#0B1420] uppercase">{t.clientName}</div>
+                    <div className="text-[11px] text-[#1853CF] font-bold uppercase tracking-wider">{t.clientRole}, {t.company}</div>
                   </div>
                 </div>
               </div>
@@ -130,3 +130,4 @@ export default async function ClientsPage() {
     </div>
   );
 }
+

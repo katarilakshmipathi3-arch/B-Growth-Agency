@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import WhatsAppButton from '@/components/common/WhatsAppButton';
 import CookieBanner from '@/components/common/CookieBanner';
 import BackToTop from '@/components/common/BackToTop';
+import IntroAnimation from '@/components/common/IntroAnimation';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -65,14 +66,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${plusJakartaSans.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen flex flex-col bg-[#EAECE8] text-[#0B1420] antialiased selection:bg-[#1F5FE6] selection:text-white" suppressHydrationWarning>
+      <head>
+        {/*
+          Inline sync script — runs before ANY paint.
+          If the user has already seen the intro, immediately mark the HTML element
+          so CSS can hide the overlay without any flash.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(sessionStorage.getItem('bg_intro_v4')){document.documentElement.setAttribute('data-intro-done','1');}}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className="min-h-screen flex flex-col bg-white text-[#0B1420] antialiased selection:bg-[#1853CF] selection:text-white" suppressHydrationWarning>
+        <IntroAnimation />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppButton />
-        <CookieBanner />
         <BackToTop />
       </body>
     </html>
   );
 }
+

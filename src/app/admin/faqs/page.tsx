@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
 import { Plus, HelpCircle, Edit3, Trash2 } from 'lucide-react';
@@ -17,7 +17,7 @@ export default async function AdminFaqsPage() {
         </div>
         <Link
           href="/admin/faqs/new"
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1F5FE6] hover:bg-[#1749C0] text-white text-sm font-bold rounded-lg transition-colors shadow-md shadow-blue-500/20"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1853CF] hover:bg-[#1749C0] text-white text-sm font-bold rounded-lg transition-colors shadow-md shadow-blue-500/20"
         >
           <Plus className="w-4 h-4" /> Add FAQ
         </Link>
@@ -31,15 +31,15 @@ export default async function AdminFaqsPage() {
       ) : (
         <div className="space-y-3">
           {faqs.map((faq, idx) => (
-            <div key={faq.id} className="bg-white border border-[#E0E2DA] rounded-xl p-5 hover:border-[#1F5FE6] transition-colors">
+            <div key={faq.id} className="bg-white border border-[#E0E2DA] rounded-xl p-5 hover:border-[#1853CF] transition-colors">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-start gap-4 flex-1">
-                  <span className="text-2xl font-black text-[#1F5FE6]/20 flex-shrink-0 leading-none mt-0.5">
+                  <span className="text-2xl font-black text-[#1853CF]/20 flex-shrink-0 leading-none mt-0.5">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className="px-2 py-0.5 bg-[#EBF1FF] text-[#1F5FE6] text-[10px] font-bold rounded uppercase tracking-wider">
+                      <span className="px-2 py-0.5 bg-[#EBF1FF] text-[#1853CF] text-[10px] font-bold rounded uppercase tracking-wider">
                         {faq.category}
                       </span>
                     </div>
@@ -50,7 +50,7 @@ export default async function AdminFaqsPage() {
                 <div className="flex items-center gap-2 flex-shrink-0">
                   <Link
                     href={`/admin/faqs/${faq.id}`}
-                    className="p-2 text-[#6B7384] hover:text-[#1F5FE6] hover:bg-[#EBF1FF] rounded-lg transition-colors"
+                    className="p-2 text-[#6B7384] hover:text-[#1853CF] hover:bg-[#EBF1FF] rounded-lg transition-colors"
                     title="Edit"
                   >
                     <Edit3 className="w-4 h-4" />
@@ -64,3 +64,4 @@ export default async function AdminFaqsPage() {
     </div>
   );
 }
+

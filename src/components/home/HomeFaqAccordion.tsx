@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
@@ -22,7 +22,7 @@ export default function HomeFaqAccordion({ faqs }: { faqs: FAQ[] }) {
             key={faq.id}
             className={`border rounded-xl overflow-hidden transition-all duration-300 ${
               isOpen
-                ? 'border-[#1F5FE6] shadow-md shadow-blue-100'
+                ? 'border-[#1853CF] shadow-md shadow-blue-100'
                 : 'border-[#E0E2DA] hover:border-[#C7D7F8]'
             }`}
           >
@@ -33,7 +33,7 @@ export default function HomeFaqAccordion({ faqs }: { faqs: FAQ[] }) {
             >
               <div className="flex items-center gap-4">
                 <span className={`text-[12px] font-black flex-shrink-0 tabular-nums ${
-                  isOpen ? 'text-[#1F5FE6]' : 'text-[#C7D7F8]'
+                  isOpen ? 'text-[#1853CF]' : 'text-[#C7D7F8]'
                 }`}>
                   {String(idx + 1).padStart(2, '0')}
                 </span>
@@ -43,7 +43,7 @@ export default function HomeFaqAccordion({ faqs }: { faqs: FAQ[] }) {
               </div>
               <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all ${
                 isOpen
-                  ? 'bg-[#1F5FE6] text-white'
+                  ? 'bg-[#1853CF] text-white'
                   : 'bg-[#F4F5F0] text-[#6B7384]'
               }`}>
                 {isOpen ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
@@ -67,3 +67,4 @@ export default function HomeFaqAccordion({ faqs }: { faqs: FAQ[] }) {
     </div>
   );
 }
+

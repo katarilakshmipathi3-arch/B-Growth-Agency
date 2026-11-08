@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -55,7 +55,7 @@ export default function PortfolioClientHub({ items }: { items: PortfolioItem[] }
               onClick={() => setSelectedType(value)}
               className={`flex-shrink-0 px-4 py-2.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
                 selectedType === value
-                  ? 'bg-[#1F5FE6] text-white shadow-md shadow-blue-500/20'
+                  ? 'bg-[#1853CF] text-white shadow-md shadow-blue-500/20'
                   : 'text-[#6B7384] hover:text-[#0B1420] hover:bg-white'
               }`}
             >
@@ -80,7 +80,7 @@ export default function PortfolioClientHub({ items }: { items: PortfolioItem[] }
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search projects…"
-            className="w-full text-sm pl-9 pr-4 py-2.5 rounded-lg border border-[#E0E2DA] bg-white focus:outline-none focus:border-[#1F5FE6] text-[#0B1420] placeholder:text-[#9CA3AF] transition-colors"
+            className="w-full text-sm pl-9 pr-4 py-2.5 rounded-lg border border-[#E0E2DA] bg-white focus:outline-none focus:border-[#1853CF] text-[#0B1420] placeholder:text-[#9CA3AF] transition-colors"
           />
         </div>
       </div>
@@ -97,7 +97,7 @@ export default function PortfolioClientHub({ items }: { items: PortfolioItem[] }
           <p className="text-[#6B7384] text-sm font-semibold mb-3">No projects matched your search.</p>
           <button
             onClick={() => { setSelectedType('All'); setSearchQuery(''); }}
-            className="text-xs font-bold text-[#1F5FE6] hover:underline"
+            className="text-xs font-bold text-[#1853CF] hover:underline"
           >
             Reset Filters
           </button>
@@ -120,7 +120,7 @@ export default function PortfolioClientHub({ items }: { items: PortfolioItem[] }
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 
                   {/* Type badge */}
-                  <div className="absolute top-4 left-4 bg-[#1F5FE6] text-white text-[10px] font-bold px-3 py-1.5 rounded uppercase tracking-wider">
+                  <div className="absolute top-4 left-4 bg-[#1853CF] text-white text-[10px] font-bold px-3 py-1.5 rounded uppercase tracking-wider">
                     {item.type}
                   </div>
 
@@ -139,7 +139,7 @@ export default function PortfolioClientHub({ items }: { items: PortfolioItem[] }
                   <div className="text-[10px] font-black uppercase tracking-widest text-[#9CA3AF] mb-1.5">
                     {item.clientName}
                   </div>
-                  <h3 className="text-base font-black text-[#0B1420] mb-2 group-hover:text-[#1F5FE6] transition-colors leading-tight">
+                  <h3 className="text-base font-black text-[#0B1420] mb-2 group-hover:text-[#1853CF] transition-colors leading-tight">
                     <Link href={`/portfolio/${item.slug}`}>{item.title}</Link>
                   </h3>
                   <p className="text-xs text-[#6B7384] leading-relaxed line-clamp-2 mb-4 flex-1">
@@ -161,7 +161,7 @@ export default function PortfolioClientHub({ items }: { items: PortfolioItem[] }
                   <div className="flex items-center justify-between pt-4 border-t border-[#F0F1EC]">
                     <Link
                       href={`/portfolio/${item.slug}`}
-                      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-[#1F5FE6] hover:text-[#1749C0] group-hover:gap-2.5 transition-all"
+                      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wide text-[#1853CF] hover:text-[#1749C0] group-hover:gap-2.5 transition-all"
                     >
                       Read Case Study <ArrowRight className="w-3 h-3" />
                     </Link>
@@ -185,3 +185,4 @@ export default function PortfolioClientHub({ items }: { items: PortfolioItem[] }
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import prisma from '@/lib/prisma';
@@ -18,7 +18,7 @@ export default async function AdminTeamPage() {
         </div>
         <Link
           href="/admin/team/new"
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1F5FE6] hover:bg-[#1749C0] text-white text-sm font-bold rounded-lg transition-colors shadow-md shadow-blue-500/20"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1853CF] hover:bg-[#1749C0] text-white text-sm font-bold rounded-lg transition-colors shadow-md shadow-blue-500/20"
         >
           <Plus className="w-4 h-4" /> Add Member
         </Link>
@@ -35,7 +35,7 @@ export default async function AdminTeamPage() {
             let socials: Record<string, string> = {};
             try { socials = JSON.parse(member.socials); } catch {}
             return (
-              <div key={member.id} className="bg-white border border-[#E0E2DA] rounded-xl overflow-hidden hover:border-[#1F5FE6] transition-colors group">
+              <div key={member.id} className="bg-white border border-[#E0E2DA] rounded-xl overflow-hidden hover:border-[#1853CF] transition-colors group">
                 <div className="relative h-40 bg-gray-100">
                   <Image src={member.avatar} alt={member.name} fill className="object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
@@ -46,7 +46,7 @@ export default async function AdminTeamPage() {
                     </div>
                     <Link
                       href={`/admin/team/${member.id}`}
-                      className="p-1.5 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-[#1F5FE6] transition-colors"
+                      className="p-1.5 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-[#1853CF] transition-colors"
                     >
                       <Edit3 className="w-3.5 h-3.5" />
                     </Link>
@@ -57,13 +57,13 @@ export default async function AdminTeamPage() {
                   <div className="mt-3 flex gap-2">
                     {socials.linkedin && (
                       <a href={socials.linkedin} target="_blank" rel="noreferrer"
-                        className="p-1.5 bg-[#F4F5F0] rounded text-[#6B7384] hover:text-[#1F5FE6]">
+                        className="p-1.5 bg-[#F4F5F0] rounded text-[#6B7384] hover:text-[#1853CF]">
                         <Linkedin className="w-3 h-3" />
                       </a>
                     )}
                     {socials.twitter && (
                       <a href={socials.twitter} target="_blank" rel="noreferrer"
-                        className="p-1.5 bg-[#F4F5F0] rounded text-[#6B7384] hover:text-[#1F5FE6]">
+                        className="p-1.5 bg-[#F4F5F0] rounded text-[#6B7384] hover:text-[#1853CF]">
                         <Twitter className="w-3 h-3" />
                       </a>
                     )}
@@ -77,3 +77,4 @@ export default async function AdminTeamPage() {
     </div>
   );
 }
+

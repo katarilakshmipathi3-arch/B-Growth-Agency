@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
 import { Plus, BookOpen, Edit3, Trash2, Eye, EyeOff } from 'lucide-react';
@@ -18,7 +18,7 @@ export default async function AdminBlogPage() {
         </div>
         <Link
           href="/admin/blog/new"
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1F5FE6] hover:bg-[#1749C0] text-white text-sm font-bold rounded-lg transition-colors shadow-md shadow-blue-500/20"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1853CF] hover:bg-[#1749C0] text-white text-sm font-bold rounded-lg transition-colors shadow-md shadow-blue-500/20"
         >
           <Plus className="w-4 h-4" /> New Article
         </Link>
@@ -28,7 +28,7 @@ export default async function AdminBlogPage() {
         <div className="text-center py-24 bg-white border border-[#E0E2DA] rounded-xl">
           <BookOpen className="w-12 h-12 text-gray-200 mx-auto mb-4" />
           <p className="text-[#6B7384] font-semibold">No articles yet. Create your first blog post.</p>
-          <Link href="/admin/blog/new" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#1F5FE6] hover:underline">
+          <Link href="/admin/blog/new" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#1853CF] hover:underline">
             <Plus className="w-4 h-4" /> Create Article
           </Link>
         </div>
@@ -53,7 +53,7 @@ export default async function AdminBlogPage() {
                     <div className="text-xs text-[#6B7384] mt-0.5">{post.readTime}</div>
                   </td>
                   <td className="px-5 py-4 hidden md:table-cell">
-                    <span className="px-2.5 py-1 bg-[#EBF1FF] text-[#1F5FE6] text-xs font-bold rounded">{post.category}</span>
+                    <span className="px-2.5 py-1 bg-[#EBF1FF] text-[#1853CF] text-xs font-bold rounded">{post.category}</span>
                   </td>
                   <td className="px-5 py-4 hidden lg:table-cell text-[#6B7384] text-xs">{post.authorName}</td>
                   <td className="px-5 py-4 hidden md:table-cell text-[#6B7384] text-xs">{formatDate(post.publishedAt)}</td>
@@ -79,7 +79,7 @@ export default async function AdminBlogPage() {
                       </Link>
                       <Link
                         href={`/admin/blog/${post.id}`}
-                        className="p-2 text-[#6B7384] hover:text-[#1F5FE6] hover:bg-[#EBF1FF] rounded-lg transition-colors"
+                        className="p-2 text-[#6B7384] hover:text-[#1853CF] hover:bg-[#EBF1FF] rounded-lg transition-colors"
                         title="Edit"
                       >
                         <Edit3 className="w-4 h-4" />
@@ -95,3 +95,4 @@ export default async function AdminBlogPage() {
     </div>
   );
 }
+

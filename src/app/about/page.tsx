@@ -2,61 +2,143 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import prisma from '@/lib/prisma';
-import { ArrowRight, Target, Eye, Award, Heart, Rocket, Linkedin, Twitter, Github, Dribbble } from 'lucide-react';
+import { ArrowRight, Check, Target, Eye, Shield, Zap, Sparkles, Award, HeartHandshake, Users } from 'lucide-react';
 
 export const metadata = {
-  title: 'About Us — The B Growth Agency Story',
-  description: 'B Growth Agency: our mission, values, and the senior creative team behind your brand growth.',
+  title: 'About B Growth Agency — Our Story, Vision & Standards',
+  description: 'Learn about B Growth Agency, founded by Adharsh Katari. Delivering world-class web development, design, and video production.',
 };
 
 export const revalidate = 0;
 
 const values = [
-  { icon: Target, title: 'Results First', desc: 'Every pixel, every line of code serves a measurable business outcome. We don\'t ship anything we can\'t defend with data.' },
-  { icon: Award, title: 'Premium Craft', desc: 'World-class execution at every touchpoint — from code architecture to color theory. No compromises, no shortcuts.' },
-  { icon: Heart, title: 'Client Partnership', desc: 'You\'re not a ticket in a queue. You\'re a partner. We communicate daily, ship transparently, and celebrate your wins.' },
-  { icon: Rocket, title: 'Speed to Market', desc: 'Agile, sprint-based execution. Most projects from signed brief to live in under 4 weeks.' },
-];
-
-const milestones = [
-  { year: '2021', title: 'Studio Founded', desc: 'B Growth Agency launched with a focus on Next.js web development for Indian startups.' },
-  { year: '2022', title: 'Design Division Added', desc: 'Expanded into commercial poster and graphic design. First 50 clients onboarded.' },
-  { year: '2023', title: 'Video Production Launch', desc: 'Added cinematic video editing and social reel production. Revenue 3× in 12 months.' },
-  { year: '2024', title: 'Full-Stack Studio', desc: 'Now a complete digital studio. 150+ projects, 12+ industries, 98% satisfaction rate.' },
+  {
+    icon: Sparkles,
+    title: 'Zero Mediocrity',
+    desc: 'We never deliver template work. Every line of code, poster composition, and video cut is custom-crafted to dominate its market.',
+  },
+  {
+    icon: Zap,
+    title: 'Speed with Precision',
+    desc: 'Slow execution kills brand momentum. We run in rapid 7-to-14 day sprints without compromising an ounce of craft.',
+  },
+  {
+    icon: Shield,
+    title: 'Extreme Ownership',
+    desc: 'From kickoff to launch and beyond, we treat your business as our own. No excuses, transparent tracking, guaranteed outcomes.',
+  },
+  {
+    icon: HeartHandshake,
+    title: 'Measurable ROI',
+    desc: 'Beauty that does not convert is just art. We design and build specifically to generate pipeline, inquiries, and revenue.',
+  },
 ];
 
 export default async function AboutPage() {
-  const teamMembers = await prisma.teamMember.findMany({ orderBy: { order: 'asc' } });
+  const team = await prisma.teamMember.findMany({
+    orderBy: { order: 'asc' },
+  });
 
   return (
-    <div className="min-h-screen bg-[#EAECE8]">
+    <div className="min-h-screen bg-white">
 
       {/* ================================================================
-          HERO — Full-bleed Royal Blue
+          HERO — 2-Column Full-bleed Royal Blue with Founder Card
           ================================================================ */}
-      <section className="hero-blue py-28 md:py-36">
+      <section className="hero-blue py-20 sm:py-28 md:py-32">
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="max-w-4xl">
-            <div className="text-[11px] font-bold tracking-[0.2em] uppercase text-blue-200/70 mb-6">
-              B GROWTH AGENCY · OUR STORY
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column: Bold Headline & Story */}
+            <div className="lg:col-span-7">
+              <div className="text-[11px] font-bold tracking-[0.2em] uppercase text-blue-200/80 mb-5">
+                B GROWTH AGENCY · OUR STORY
+              </div>
+              <h1 className="text-[clamp(2.5rem,6vw,5.2rem)] font-black leading-[0.95] tracking-tight uppercase text-white mb-6">
+                WE REPLACE<br />
+                <span className="text-blue-200">GENERIC</span><br />
+                WITH GREAT.
+              </h1>
+              <p className="text-blue-100 text-lg sm:text-xl leading-relaxed max-w-xl mb-8">
+                Founded on the conviction that ambitious brands deserve world-class engineering 
+                and culture-defining creative design — never templates, never agencies-in-a-box.
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link href="/portfolio" className="btn-primary shadow-lg shadow-black/20">
+                  Explore Our Work <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link href="/team" className="btn-outline-white">
+                  Meet the Team
+                </Link>
+              </div>
             </div>
-            <h1 className="text-[clamp(2.5rem,7vw,6rem)] font-black leading-[0.95] tracking-tight uppercase text-white mb-8">
-              WE REPLACE<br />
-              <span className="text-blue-200">GENERIC</span><br />
-              WITH GREAT.
-            </h1>
-            <p className="text-blue-100 text-xl leading-relaxed max-w-2xl">
-              Founded on the conviction that ambitious brands deserve world-class software engineering 
-              and culture-defining creative design — not templates, not agencies-in-a-box.
-            </p>
+
+            {/* Right Column: Brand Identity Card -- Abstract premium, no photo */}
+            <div className="lg:col-span-5">
+              <div className="bg-white rounded-3xl p-6 sm:p-7 shadow-[0_24px_64px_rgba(0,0,0,0.38)] border border-white/80 transition-transform duration-300 hover:-translate-y-1 text-[#0B1420] overflow-hidden relative">
+                {/* Badge row */}
+                <div className="flex items-center justify-between gap-3 mb-5">
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-blue-50 text-[#1853CF] border border-blue-200">
+                    <Sparkles className="w-3.5 h-3.5" /> Our Philosophy
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-600 uppercase tracking-wider">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" /> Active · Hyderabad
+                  </span>
+                </div>
+                {/* Abstract brand visual */}
+                <div className="relative h-44 sm:h-48 rounded-2xl overflow-hidden mb-5 bg-gradient-to-br from-[#1853CF] via-[#1240A6] to-[#0B2D7A] flex items-center justify-center">
+                  <div className="absolute inset-0 opacity-10" style={{backgroundImage: 'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)', backgroundSize: '28px 28px'}} />
+                  <div className="relative z-10 text-center">
+                    <div className="text-[52px] sm:text-[60px] font-black text-white leading-none tracking-tighter mb-1">B·G</div>
+                    <div className="text-[11px] font-bold tracking-[0.35em] uppercase text-blue-200/80">AGENCY</div>
+                    <div className="mt-3 flex items-center justify-center gap-2">
+                      <div className="w-8 h-0.5 bg-blue-300/50 rounded-full" />
+                      <div className="text-[9px] text-blue-300/70 font-bold tracking-widest uppercase">Est. 2021 · Hyderabad</div>
+                      <div className="w-8 h-0.5 bg-blue-300/50 rounded-full" />
+                    </div>
+                  </div>
+                  <div className="absolute -top-6 -right-6 w-24 h-24 rounded-full bg-white/5 border border-white/10" />
+                  <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-white/5 border border-white/10" />
+                </div>
+                {/* Founder quote */}
+                <p className="text-xs text-slate-600 leading-relaxed mb-5 italic border-l-2 border-[#1853CF] pl-3">
+                  &ldquo;We don&apos;t build websites or cut clips. We engineer the digital moat that lets our clients command higher prices and own their category.&rdquo;
+                </p>
+                {/* Stats grid */}
+                <div className="grid grid-cols-3 gap-2 p-3 rounded-2xl bg-blue-50/70 border border-blue-100 mb-4 text-center">
+                  <div>
+                    <div className="text-base font-black text-[#1853CF]">45+</div>
+                    <div className="text-[9px] uppercase font-bold text-slate-500">Brands</div>
+                  </div>
+                  <div className="border-x border-blue-100">
+                    <div className="text-base font-black text-emerald-600">100%</div>
+                    <div className="text-[9px] uppercase font-bold text-slate-500">On-Time</div>
+                  </div>
+                  <div>
+                    <div className="text-base font-black text-amber-500">12+</div>
+                    <div className="text-[9px] uppercase font-bold text-slate-500">Services</div>
+                  </div>
+                </div>
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-[11px] font-bold text-slate-400">Hyderabad, India</span>
+                  <Link
+                    href="/team"
+                    className="inline-flex items-center gap-1 text-xs font-black text-[#1853CF] hover:underline"
+                  >
+                    View Studio Team <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
       {/* ================================================================
-          MISSION & VISION
+          MISSION & VISION — Clean White & Ice Blue
           ================================================================ */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-20 sm:py-24">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
@@ -64,22 +146,22 @@ export default async function AboutPage() {
                 icon: Target,
                 label: 'Our Mission',
                 title: 'Build digital products that pay for themselves.',
-                desc: 'To empower entrepreneurs, creators, and enterprises with websites, designs, and videos that convert visitors into lifelong advocates — generating compounding revenue growth.',
+                desc: 'To empower entrepreneurs, creators, and enterprises with websites, designs, and video content that convert cold visitors into lifelong paying clients — generating compounding growth.',
               },
               {
                 icon: Eye,
                 label: 'Our Vision',
-                title: 'The studio brands come back to, forever.',
-                desc: 'To become the go-to creative engineering partner for ambitious founders building category-defining brands across Southeast Asia and beyond.',
+                title: 'The studio brands partner with, forever.',
+                desc: 'To become the premier creative engineering partner for ambitious founders building category-defining brands globally with absolute reliability.',
               },
             ].map((item, i) => (
-              <div key={i} className="bg-[#F4F5F0] border border-[#E0E2DA] rounded-xl p-10">
-                <div className="w-14 h-14 rounded-xl bg-[#1F5FE6] flex items-center justify-center mb-6">
+              <div key={i} className="bg-[#F8FAFF] border border-blue-100/80 rounded-2xl p-8 sm:p-10 shadow-xs hover:border-[#1853CF] transition-all">
+                <div className="w-12 h-12 rounded-xl bg-[#1853CF] flex items-center justify-center mb-6 shadow-md shadow-blue-500/20">
                   <item.icon className="w-6 h-6 text-white" />
                 </div>
-                <div className="text-[11px] font-bold uppercase tracking-widest text-[#1F5FE6] mb-3">{item.label}</div>
-                <h3 className="text-2xl font-black text-[#0B1420] mb-4 leading-tight">{item.title}</h3>
-                <p className="text-[#6B7384] text-sm leading-relaxed">{item.desc}</p>
+                <div className="text-[11px] font-bold uppercase tracking-widest text-[#1853CF] mb-2">{item.label}</div>
+                <h3 className="text-xl sm:text-2xl font-black text-[#0B1420] mb-3 leading-tight">{item.title}</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -87,24 +169,24 @@ export default async function AboutPage() {
       </section>
 
       {/* ================================================================
-          CORE VALUES
+          CORE VALUES — Soft Ice Blue Canvas (NO dark box)
           ================================================================ */}
-      <section className="bg-[#0F1117] py-24">
+      <section className="bg-[#F8FAFF] border-y border-blue-100/80 py-20 sm:py-24">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="mb-14">
-            <div className="section-label text-gray-500">Our Values</div>
-            <h2 className="text-4xl sm:text-5xl font-black uppercase text-white max-w-2xl leading-[1]">
-              THE PRINCIPLES<br />WE LIVE BY.
+          <div className="mb-14 max-w-2xl">
+            <div className="text-xs font-bold uppercase tracking-widest text-[#1853CF] mb-2">Our Operating Values</div>
+            <h2 className="text-3xl sm:text-4xl font-black uppercase text-[#0B1420] leading-tight">
+              THE PRINCIPLES WE LIVE AND SHIP BY.
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((v, i) => (
-              <div key={i} className="bg-[#181C27] border border-white/5 rounded-xl p-7 hover:border-[#1F5FE6] transition-colors">
-                <div className="w-12 h-12 rounded-xl bg-[#1F5FE6] flex items-center justify-center mb-5">
-                  <v.icon className="w-5 h-5 text-white" />
+              <div key={i} className="bg-white border border-slate-200/80 rounded-2xl p-7 hover:border-[#1853CF] hover:shadow-lg transition-all shadow-xs">
+                <div className="w-12 h-12 rounded-xl bg-blue-50 text-[#1853CF] flex items-center justify-center mb-5">
+                  <v.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-base font-black uppercase text-white mb-3">{v.title}</h3>
-                <p className="text-sm text-gray-400 leading-relaxed">{v.desc}</p>
+                <h3 className="text-base font-black uppercase text-[#0B1420] mb-2">{v.title}</h3>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>
@@ -112,95 +194,61 @@ export default async function AboutPage() {
       </section>
 
       {/* ================================================================
-          TIMELINE / MILESTONES
+          TEAM SHOWCASE
           ================================================================ */}
-      <section className="bg-[#EAECE8] py-24">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="mb-14">
-            <div className="section-label">Our Journey</div>
-            <h2 className="text-4xl sm:text-5xl font-black uppercase text-[#0B1420] max-w-2xl leading-[1]">
-              HOW WE GOT HERE.
-            </h2>
-          </div>
-          <div className="relative">
-            {/* Timeline line */}
-            <div className="absolute left-6 top-0 bottom-0 w-px bg-[#1F5FE6]/20 hidden md:block" />
-            <div className="space-y-8">
-              {milestones.map((m, i) => (
-                <div key={i} className="relative md:pl-20 flex gap-6 md:block">
-                  {/* Year dot */}
-                  <div className="hidden md:flex absolute left-0 w-12 h-12 rounded-full bg-[#1F5FE6] items-center justify-center flex-shrink-0 shadow-lg shadow-blue-500/20">
-                    <span className="text-[10px] font-black text-white">{m.year}</span>
+      {team.length > 0 && (
+        <section className="bg-white py-20 sm:py-24">
+          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-12">
+              <div>
+                <div className="text-xs font-bold uppercase tracking-widest text-[#1853CF] mb-2">The Studio Collective</div>
+                <h2 className="text-3xl sm:text-4xl font-black uppercase text-[#0B1420]">
+                  MEET THE LEADERSHIP.
+                </h2>
+              </div>
+              <Link href="/team" className="btn-secondary text-xs inline-flex items-center gap-1.5">
+                View All Team Members <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {team.map((member) => (
+                <div key={member.id} className="bg-[#F8FAFF] rounded-2xl border border-blue-100/80 p-5 overflow-hidden shadow-xs">
+                  <div className="relative h-60 w-full rounded-xl overflow-hidden mb-4 bg-slate-100">
+                    <Image
+                      src={member.avatar || '/founder.jpg'}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-                  <div className="md:hidden w-20 flex-shrink-0">
-                    <div className="text-2xl font-black text-[#1F5FE6]">{m.year}</div>
-                  </div>
-                  <div className="bg-white border border-[#E0E2DA] rounded-xl p-7 flex-1">
-                    <h3 className="text-lg font-black text-[#0B1420] mb-2">{m.title}</h3>
-                    <p className="text-sm text-[#6B7384] leading-relaxed">{m.desc}</p>
-                  </div>
+                  <h3 className="font-bold text-base text-[#0B1420]">{member.name}</h3>
+                  <p className="text-xs font-bold text-[#1853CF] mb-2">{member.role}</p>
+                  <p className="text-xs text-slate-600 line-clamp-2">{member.bio}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          TEAM GRID
-          ================================================================ */}
-      {teamMembers.length > 0 && (
-        <section className="bg-white py-24">
-          <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-            <div className="mb-14 text-center">
-              <div className="section-label text-center">The People</div>
-              <h2 className="text-4xl sm:text-5xl font-black uppercase text-[#0B1420]">
-                MEET THE STUDIO.
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {teamMembers.map((member) => {
-                let socials: Record<string, string> = {};
-                try { socials = JSON.parse(member.socials); } catch {}
-                return (
-                  <div key={member.id} className="group text-center">
-                    <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-gray-100 mb-5">
-                      <Image src={member.avatar} alt={member.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-5">
-                        <div className="flex gap-3">
-                          {socials.linkedin && <a href={socials.linkedin} target="_blank" rel="noreferrer" className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-[#1F5FE6]"><Linkedin className="w-3.5 h-3.5" /></a>}
-                          {socials.twitter && <a href={socials.twitter} target="_blank" rel="noreferrer" className="w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-[#1F5FE6]"><Twitter className="w-3.5 h-3.5" /></a>}
-                        </div>
-                      </div>
-                    </div>
-                    <h3 className="text-base font-black text-[#0B1420]">{member.name}</h3>
-                    <div className="text-xs font-semibold text-[#1F5FE6] uppercase tracking-wider mt-1">{member.role}</div>
-                    <p className="text-xs text-[#6B7384] leading-relaxed mt-2 line-clamp-3">{member.bio}</p>
-                  </div>
-                );
-              })}
             </div>
           </div>
         </section>
       )}
 
       {/* ================================================================
-          CTA
+          BOTTOM CTA STRIP
           ================================================================ */}
-      <section className="hero-blue py-24">
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
-          <h2 className="text-4xl sm:text-5xl font-black uppercase text-white mb-6">
-            READY TO WORK<br />WITH THE BEST?
+      <section className="bg-[#1853CF] text-white py-16">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase mb-4">
+            READY TO BUILD SOMETHING EXTRAORDINARY?
           </h2>
-          <p className="text-blue-100 text-lg max-w-xl mx-auto mb-10">
-            Get a detailed project proposal within 24 hours. No obligation, just clarity.
+          <p className="text-blue-100 text-sm sm:text-base max-w-xl mx-auto mb-8">
+            Tell us about your brand vision. We respond within 15 minutes with a comprehensive action plan.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/quote" className="btn-primary shadow-lg shadow-black/25">
-              Start Your Project <ArrowRight className="w-4 h-4" />
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/quote" className="btn-primary bg-white text-[#1853CF] hover:bg-blue-50 shadow-lg">
+              Get Started Now <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/contact" className="btn-outline-white">
-              Get in Touch
+              Schedule a Call
             </Link>
           </div>
         </div>
@@ -209,3 +257,4 @@ export default async function AboutPage() {
     </div>
   );
 }
+

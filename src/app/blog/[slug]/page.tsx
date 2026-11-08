@@ -45,7 +45,7 @@ export default async function BlogPostDetailPage({ params }: { params: { slug: s
   });
 
   return (
-    <article className="min-h-screen bg-[#EAECE8]">
+    <article className="min-h-screen bg-white">
       
       {/* ================================================================
           HERO — Royal Blue

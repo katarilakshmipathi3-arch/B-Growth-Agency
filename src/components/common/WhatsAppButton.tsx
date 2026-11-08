@@ -10,7 +10,12 @@ export default function WhatsAppButton() {
   const [message, setMessage] = useState('');
   const phoneNumber = '919876543210';
 
-  if (pathname?.startsWith('/admin')) {
+  if (
+    pathname?.startsWith('/admin') ||
+    pathname?.startsWith('/portal') ||
+    pathname?.startsWith('/invoice') ||
+    pathname?.startsWith('/contract')
+  ) {
     return null;
   }
 

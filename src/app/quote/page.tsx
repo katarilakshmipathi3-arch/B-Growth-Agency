@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import QuoteWizard from '@/components/quote/QuoteWizard';
 import { Sparkles, CheckCircle } from 'lucide-react';
 
@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function QuotePage() {
   return (
-    <div className="min-h-screen bg-[#EAECE8]">
+    <div className="min-h-screen bg-white">
       
       {/* ================================================================
           HERO — Royal Blue
@@ -47,7 +47,7 @@ export default function QuotePage() {
               'Full source code & asset ownership',
             ].map((text, i) => (
               <div key={i} className="flex items-center gap-3 p-4 rounded-xl bg-white border border-[#E0E2DA]">
-                <CheckCircle className="w-5 h-5 text-[#1F5FE6] flex-shrink-0" />
+                <CheckCircle className="w-5 h-5 text-[#1853CF] flex-shrink-0" />
                 <span className="text-xs font-bold text-[#0B1420]">
                   {text}
                 </span>
@@ -61,3 +61,4 @@ export default function QuotePage() {
     </div>
   );
 }
+

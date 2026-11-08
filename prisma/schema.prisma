@@ -194,3 +194,86 @@ model ActivityLog {
   createdAt  DateTime @default(now())
   user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
+
+model ClientPortal {
+  id                 String                @id @default(uuid())
+  clientName         String
+  clientEmail        String
+  company            String
+  token              String                @unique // unique secure slug for client access
+  accessPin          String?
+  projectName        String
+  serviceType        String                // Web Development, Poster Design, Video Editing, Full Stack
+  status             String                @default("In Progress") // Discovery, Design, Development, QA & Polish, Completed
+  progress           Int                   @default(25) // 0-100%
+  startDate          String?
+  deliveryDate       String?
+  stagingUrl         String?
+  figmaUrl           String?
+  videoProofUrl      String?
+  milestones         String                @default("[]") // JSON: [{id, title, desc, status, date}]
+  deliverables       String                @default("[]") // JSON: [{id, name, type, fileUrl, status}]
+  agencyContactName  String                @default("Adharsh Katari")
+  agencyContactRole  String                @default("Founder · B Growth Agency")
+  agencyContactPhone String                @default("+91 98765 43210")
+  agencyContactEmail String                @default("adharsh@bgrowth.agency")
+  expiresAt          DateTime?
+  isActive           Boolean               @default(true)
+  createdAt          DateTime              @default(now())
+  updatedAt          DateTime              @updatedAt
+  messages           ClientPortalMessage[]
+  invoices           Invoice[]
+}
+
+model ClientPortalMessage {
+  id            String       @id @default(uuid())
+  portalId      String
+  sender        String       // "CLIENT" or "AGENCY"
+  senderName    String
+  message       String
+  attachmentUrl String?
+  createdAt     DateTime     @default(now())
+  portal        ClientPortal @relation(fields: [portalId], references: [id], onDelete: Cascade)
+}
+
+model Invoice {
+  id            String        @id @default(uuid())
+  invoiceNumber String        @unique
+  clientName    String
+  clientEmail   String
+  clientCompany String
+  clientAddress String?
+  portalId      String?
+  date          String
+  dueDate       String
+  items         String        @default("[]") // JSON: [{description, quantity, rate, amount}]
+  subtotal      Float         @default(0)
+  taxRate       Float         @default(18.0)
+  taxAmount     Float         @default(0)
+  discount      Float         @default(0)
+  total         Float         @default(0)
+  status        String        @default("PENDING") // PAID, PENDING, OVERDUE, DRAFT
+  paymentNotes  String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  portal        ClientPortal? @relation(fields: [portalId], references: [id], onDelete: SetNull)
+}
+
+model Contract {
+  id              String    @id @default(uuid())
+  contractNumber  String    @unique
+  title           String
+  clientName      String
+  clientEmail     String
+  clientCompany   String
+  serviceScope    String
+  totalValue      Float     @default(0)
+  paymentSchedule String    @default("50% upfront deposit, 50% upon final signoff and delivery")
+  deliverables    String    @default("[]")
+  terms           String
+  status          String    @default("SENT") // SENT, ACCEPTED, SIGNED, EXPIRED
+  signedAt        DateTime?
+  signatureName   String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}

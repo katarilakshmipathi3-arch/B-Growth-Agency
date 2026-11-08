@@ -6,19 +6,17 @@
 
 @layer base {
   :root {
-    --primary: #1F5FE6;
+    --primary: #1853CF;
     --primary-hover: #1749C0;
     --primary-dark: #1243B5;
-    --canvas: #EAECE8;
-    --canvas-border: #D4D6CF;
-    --graphite: #0F1117;
-    --graphite-mid: #181C27;
+    --canvas: #FFFFFF;
+    --canvas-border: #E2E8F0;
     --surface: #FFFFFF;
     --text-dark: #0B1420;
     --text-mid: #3A4152;
     --text-muted: #6B7384;
-    --ice: #EBF1FF;
-    --ice-border: #C7D7F8;
+    --ice: #F0F5FF;
+    --ice-border: #D5E3FA;
   }
 
   * {
@@ -31,8 +29,8 @@
   }
 
   body {
-    background-color: var(--canvas);
-    color: var(--text-dark);
+    background-color: #FFFFFF;
+    color: #0B1420;
     font-family: 'Inter', system-ui, sans-serif;
     overflow-x: hidden;
   }
@@ -86,7 +84,7 @@
    Sits flush against white navbar — no gap
    ============================================= */
 .hero-blue {
-  background-color: #1F5FE6;
+  background-color: #1853CF;
   position: relative;
   overflow: hidden;
   /* Subtle noise texture */
@@ -142,7 +140,7 @@
   gap: 8px;
   padding: 14px 28px;
   background: #FFFFFF;
-  color: #1F5FE6;
+  color: #1853CF;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 800;
   font-size: 13px;
@@ -186,7 +184,7 @@
   align-items: center;
   gap: 8px;
   padding: 14px 28px;
-  background: #1F5FE6;
+  background: #1853CF;
   color: #FFFFFF;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 800;
@@ -239,7 +237,7 @@
   transition: all 0.3s ease;
 }
 .service-card:hover {
-  border-color: #1F5FE6;
+  border-color: #1853CF;
   box-shadow: 0 12px 40px rgba(31,95,230,0.12);
   transform: translateY(-4px);
 }
@@ -255,7 +253,7 @@
   transition: all 0.3s ease;
 }
 .portfolio-card:hover {
-  border-color: #1F5FE6;
+  border-color: #1853CF;
   box-shadow: 0 16px 48px rgba(31,95,230,0.14);
   transform: translateY(-4px);
 }
@@ -274,7 +272,7 @@
   top: 44px;
   bottom: -32px;
   width: 1px;
-  background: linear-gradient(to bottom, #1F5FE6, transparent);
+  background: linear-gradient(to bottom, #1853CF, transparent);
 }
 .process-step:last-child::before {
   display: none;
@@ -289,8 +287,66 @@
   border-radius: 12px;
 }
 
+/* =============================================
+   MARQUEE ANIMATION
+   ============================================= */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #CBD0D8; border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: #1F5FE6; }
+::-webkit-scrollbar-thumb:hover { background: #1853CF; }
+
+
+/* ── Intro Animation: hide instantly for returning visitors ── */
+[data-intro-done='1'] #bg-intro-overlay {
+  display: none !important;
+}
+
+/* =============================================
+   NEUMORPHISM (Soft Dual-Shadow Depth System)
+   ============================================= */
+.neumorph-flat {
+  background: #F8FAFF;
+  box-shadow: 6px 6px 14px rgba(24, 83, 207, 0.08), -6px -6px 14px rgba(255, 255, 255, 0.9);
+}
+
+.neumorph-raised {
+  background: #FFFFFF;
+  box-shadow: 8px 8px 18px rgba(10, 30, 80, 0.06), -8px -8px 18px rgba(255, 255, 255, 0.95);
+  transition: all 0.25s ease;
+}
+
+.neumorph-raised:hover {
+  box-shadow: 12px 12px 24px rgba(10, 30, 80, 0.10), -12px -12px 24px rgba(255, 255, 255, 1);
+  transform: translateY(-2px);
+}
+
+.neumorph-pressed {
+  background: #F4F7FC;
+  box-shadow: inset 4px 4px 8px rgba(24, 83, 207, 0.10), inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+}
+
+.neumorph-pill-blue {
+  background: #1853CF;
+  box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.35), inset -2px -2px 4px rgba(10, 35, 95, 0.4), 4px 4px 12px rgba(10, 35, 95, 0.35);
+}
+
+.neumorph-pill-white {
+  background: #FFFFFF;
+  box-shadow: 3px 3px 10px rgba(10, 38, 100, 0.35), -2px -2px 6px rgba(255, 255, 255, 0.45), inset 1px 1px 2px rgba(255, 255, 255, 0.9), inset -1px -1px 2px rgba(24, 83, 207, 0.15);
+}

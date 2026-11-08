@@ -73,7 +73,7 @@ export default function QuoteWizard() {
           name: data.name,
           email: data.email,
           phone: data.phone,
-          serviceInterest: data.serviceInterest || data.service,
+          serviceInterest: data.service,
           budget: data.budget,
           timeline: data.timeline,
           message: data.notes || `Multi-step quote request for ${data.service}`,

@@ -20,7 +20,13 @@ export default function BackToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (pathname?.startsWith('/admin') || !visible) return null;
+  if (
+    pathname?.startsWith('/admin') ||
+    pathname?.startsWith('/portal') ||
+    pathname?.startsWith('/invoice') ||
+    pathname?.startsWith('/contract') ||
+    !visible
+  ) return null;
 
   return (
     <button

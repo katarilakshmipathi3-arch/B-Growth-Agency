@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import prisma from '@/lib/prisma';
@@ -18,7 +18,7 @@ export default async function AdminClientsPage() {
         </div>
         <Link
           href="/admin/clients/new"
-          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1F5FE6] hover:bg-[#1749C0] text-white text-sm font-bold rounded-lg transition-colors shadow-md shadow-blue-500/20"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1853CF] hover:bg-[#1749C0] text-white text-sm font-bold rounded-lg transition-colors shadow-md shadow-blue-500/20"
         >
           <Plus className="w-4 h-4" /> Add Client
         </Link>
@@ -32,7 +32,7 @@ export default async function AdminClientsPage() {
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {clients.map((client) => (
-            <div key={client.id} className="bg-white border border-[#E0E2DA] rounded-xl p-4 hover:border-[#1F5FE6] transition-colors group relative">
+            <div key={client.id} className="bg-white border border-[#E0E2DA] rounded-xl p-4 hover:border-[#1853CF] transition-colors group relative">
               <div className="relative h-14 w-full mb-3">
                 <Image
                   src={client.logoUrl}
@@ -47,7 +47,7 @@ export default async function AdminClientsPage() {
               <div className="absolute inset-0 bg-white/90 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
                 <Link
                   href={`/admin/clients/${client.id}`}
-                  className="p-2 bg-[#EBF1FF] text-[#1F5FE6] rounded-lg hover:bg-[#1F5FE6] hover:text-white transition-colors"
+                  className="p-2 bg-[#EBF1FF] text-[#1853CF] rounded-lg hover:bg-[#1853CF] hover:text-white transition-colors"
                 >
                   <Edit3 className="w-4 h-4" />
                 </Link>
@@ -69,3 +69,4 @@ export default async function AdminClientsPage() {
     </div>
   );
 }
+

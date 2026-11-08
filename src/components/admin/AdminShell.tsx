@@ -24,7 +24,12 @@ import {
   X, 
   ExternalLink,
   ChevronRight,
-  UserCheck
+  UserCheck,
+  Receipt,
+  FileCheck,
+  Tag,
+  Activity,
+  GraduationCap
 } from 'lucide-react';
 import { AdminTokenPayload } from '@/lib/auth';
 
@@ -64,6 +69,12 @@ export default function AdminShell({
 
   const navItems: NavItem[] = [
     { title: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+    { title: 'Hospital Diagnostics', href: '/admin/audit', icon: Activity },
+    { title: 'Client Portals', href: '/admin/portals', icon: ShieldCheck },
+    { title: 'Invoices & Billing', href: '/admin/invoices', icon: Receipt },
+    { title: 'Contracts & Quotes', href: '/admin/contracts', icon: FileCheck },
+    { title: 'Pricing Plans', href: '/admin/pricing', icon: Tag },
+    { title: 'Career Applications', href: '/admin/careers', icon: GraduationCap },
     { title: 'Services', href: '/admin/services', icon: Layers },
     { title: 'Portfolio / Works', href: '/admin/portfolio', icon: Briefcase },
     { title: 'Media Library', href: '/admin/media', icon: ImageIcon },
@@ -94,8 +105,12 @@ export default function AdminShell({
           <div className="p-4 border-b border-brand-border dark:border-slate-800 flex items-center justify-between">
             {!collapsed && (
               <Link href="/admin" className="flex items-center gap-2">
-                <div className="relative h-9 w-36">
-                  <Image src="/logo.png" alt="B Growth Agency" fill className="object-contain object-left" priority />
+                <div className="bg-[#1853CF] px-3 py-1.5 rounded-xl shadow-xs">
+                  <img
+                    src="/nav-logo.png"
+                    alt="B Growth Agency"
+                    className="h-6 w-auto object-contain"
+                  />
                 </div>
               </Link>
             )}
@@ -221,8 +236,12 @@ export default function AdminShell({
           <div className="relative w-72 bg-white dark:bg-slate-900 h-full flex flex-col justify-between p-4 z-10 border-r border-brand-border dark:border-slate-800">
             <div className="space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-brand-border dark:border-slate-800">
-                <div className="relative h-8 w-32">
-                  <Image src="/logo.png" alt="Logo" fill className="object-contain object-left" />
+                <div className="bg-[#1853CF] px-3 py-1.5 rounded-xl shadow-xs">
+                  <img
+                    src="/nav-logo.png"
+                    alt="B Growth Agency"
+                    className="h-6 w-auto object-contain"
+                  />
                 </div>
                 <button
                   onClick={() => setSidebarOpen(false)}
@@ -272,3 +291,4 @@ export default function AdminShell({
     </div>
   );
 }
+

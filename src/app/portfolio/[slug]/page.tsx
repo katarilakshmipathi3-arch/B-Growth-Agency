@@ -58,7 +58,7 @@ export default async function PortfolioDetailPage({ params }: { params: { slug: 
   const embedUrl = getYouTubeEmbedUrl(item.videoUrl);
 
   return (
-    <div className="min-h-screen bg-[#EAECE8]">
+    <div className="min-h-screen bg-white">
 
       {/* ================================================================
           HERO — Royal Blue

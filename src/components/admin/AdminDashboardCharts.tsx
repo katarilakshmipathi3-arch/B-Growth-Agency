@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { 
@@ -23,16 +23,22 @@ interface Props {
   newInquiries: number;
 }
 
-const COLORS = ['#1F5FE6', '#16A34A', '#F59E0B'];
+const COLORS = ['#1853CF', '#16A34A', '#F59E0B'];
 
 export default function AdminDashboardCharts({ worksByType, totalInquiries, newInquiries }: Props) {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const portfolioDistribution = [
     { name: 'Websites', count: worksByType.Websites },
     { name: 'Poster Designs', count: worksByType.Posters },
     { name: 'Edited Videos', count: worksByType.Videos },
   ];
 
-  // Dummy monthly inquiry velocity chart
+  // Monthly inquiry velocity data
   const inquiryVelocity = [
     { month: 'Jun', leads: 8 },
     { month: 'Jul', leads: 14 },
@@ -41,6 +47,19 @@ export default function AdminDashboardCharts({ worksByType, totalInquiries, newI
     { month: 'Oct', leads: 45 },
     { month: 'Nov', leads: 58 },
   ];
+
+  if (!mounted) {
+    return (
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-brand-border dark:border-slate-800 h-80 flex items-center justify-center text-xs text-brand-muted">
+          Loading analytics...
+        </div>
+        <div className="lg:col-span-1 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-brand-border dark:border-slate-800 h-80 flex items-center justify-center text-xs text-brand-muted">
+          Loading distribution...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -75,7 +94,7 @@ export default function AdminDashboardCharts({ worksByType, totalInquiries, newI
                   fontSize: '12px' 
                 }} 
               />
-              <Bar dataKey="leads" fill="#1F5FE6" radius={[6, 6, 0, 0]} />
+              <Bar dataKey="leads" fill="#1853CF" radius={[6, 6, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -129,3 +148,4 @@ export default function AdminDashboardCharts({ worksByType, totalInquiries, newI
     </div>
   );
 }
+

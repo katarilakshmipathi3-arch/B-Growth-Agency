@@ -50,7 +50,7 @@ export default async function ServiceDetailPage({ params }: { params: { slug: st
   const pricingTiers = service.pricingTiers ? JSON.parse(service.pricingTiers) : [];
 
   return (
-    <div className="min-h-screen bg-[#EAECE8]">
+    <div className="min-h-screen bg-white">
       
       {/* ================================================================
           HERO BANNER — Royal Blue
@@ -242,7 +242,7 @@ export default async function ServiceDetailPage({ params }: { params: { slug: st
               <p className="text-xs text-[#6B7384] mb-6">
                 Receive an itemized quote and implementation timeline within 24 hours.
               </p>
-              <ServiceRequestForm serviceName={service.title} />
+              <ServiceRequestForm serviceTitle={service.title} />
             </div>
           </div>
 
