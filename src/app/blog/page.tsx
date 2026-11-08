@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import prisma from '@/lib/prisma';
@@ -12,10 +12,15 @@ export const metadata = {
 export const revalidate = 0;
 
 export default async function BlogPage() {
-  const posts = await prisma.blogPost.findMany({
-    where: { status: 'published' },
-    orderBy: { publishedAt: 'desc' },
-  });
+  let posts: any[] = [];
+  try {
+    posts = await prisma.blogPost.findMany({
+      where: { status: 'published' },
+      orderBy: { publishedAt: 'desc' },
+    });
+  } catch (err) {
+    console.error('BlogPage database query error:', err);
+  }
 
   const featured = posts[0];
   const rest = posts.slice(1);

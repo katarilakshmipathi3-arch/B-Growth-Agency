@@ -15,12 +15,21 @@ export const metadata = {
 };
 
 export default async function HomePage() {
-  const [services, portfolio, testimonials, faqs] = await Promise.all([
-    prisma.service.findMany({ where: { status: 'published' }, orderBy: { order: 'asc' }, take: 6 }),
-    prisma.portfolioItem.findMany({ where: { status: 'published' }, orderBy: { order: 'asc' }, take: 6 }),
-    prisma.testimonial.findMany({ where: { isFeatured: true }, orderBy: { order: 'asc' }, take: 3 }),
-    prisma.fAQ.findMany({ orderBy: { order: 'asc' }, take: 6 }),
-  ]);
+  let services: any[] = [];
+  let portfolio: any[] = [];
+  let testimonials: any[] = [];
+  let faqs: any[] = [];
+
+  try {
+    [services, portfolio, testimonials, faqs] = await Promise.all([
+      prisma.service.findMany({ where: { status: 'published' }, orderBy: { order: 'asc' }, take: 6 }),
+      prisma.portfolioItem.findMany({ where: { status: 'published' }, orderBy: { order: 'asc' }, take: 6 }),
+      prisma.testimonial.findMany({ where: { isFeatured: true }, orderBy: { order: 'asc' }, take: 3 }),
+      prisma.fAQ.findMany({ orderBy: { order: 'asc' }, take: 6 }),
+    ]);
+  } catch (err) {
+    console.error('HomePage database query error:', err);
+  }
 
   const stats = [
     { num: '150+', label: 'Projects Delivered' },
