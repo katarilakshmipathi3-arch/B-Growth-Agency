@@ -108,13 +108,13 @@ const GALLERY_ITEMS: GalleryItem[] = [
   },
 ];
 
-const CATEGORIES = [
-  { id: 'all', label: 'All Showcase' },
+const CATEGORIES: { id: string; label: string; icon?: React.ElementType }[] = [
+  { id: 'all', label: 'All Showcase', icon: Sparkles },
   { id: 'traction', label: 'Real Traction & ROI', icon: TrendingUp },
   { id: 'team', label: 'Team & Studio', icon: Users },
   { id: 'events', label: 'Shoots & Events', icon: Film },
   { id: 'reviews', label: 'Video Reviews', icon: Star },
-] as const;
+];
 
 export default function HomeShowcaseGallery() {
   const [activeTab, setActiveTab] = useState<string>('all');

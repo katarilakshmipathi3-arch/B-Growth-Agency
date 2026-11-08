@@ -177,14 +177,14 @@ const ALL_GALLERY_ITEMS: GalleryMedia[] = [
   },
 ];
 
-const CATEGORIES = [
-  { id: 'all', label: 'All Media' },
+const CATEGORIES: { id: string; label: string; icon?: React.ElementType }[] = [
+  { id: 'all', label: 'All Media', icon: Sparkles },
   { id: 'team', label: 'Team & Studio', icon: Users },
   { id: 'events', label: 'Cinema Sets & Events', icon: Film },
   { id: 'traction', label: 'Real Traction & ROI', icon: TrendingUp },
   { id: 'reviews', label: 'Video Reviews', icon: Star },
   { id: 'bts', label: 'BTS & Equipment', icon: Camera },
-] as const;
+];
 
 export default function GalleryClientView() {
   const [activeTab, setActiveTab] = useState<string>('all');
